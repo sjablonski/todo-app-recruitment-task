@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import backendAPI from 'api/backend';
 import { RootState } from 'redux/store';
@@ -89,6 +89,11 @@ export const todoTaskSlice = createSlice({
     builder.addCase(updateTodoTask.fulfilled, (state, action) => {
       const taskIndex = state.rows.findIndex((row) => row._id === action.payload._id);
       state.rows[taskIndex] = action.payload;
+
+      console.log(
+        'All checked tasks on the page:',
+        current(state.rows).filter((task) => task.finished),
+      );
     });
     builder.addCase(deleteTodoTask.fulfilled, (state, action) => {
       state.rows = state.rows.filter((row) => row._id !== action.payload);
