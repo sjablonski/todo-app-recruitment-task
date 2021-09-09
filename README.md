@@ -1,4 +1,4 @@
-# To Do Ap - Recruitment task
+# To Do App - Recruitment task
 
 ## Technology Stack
 
